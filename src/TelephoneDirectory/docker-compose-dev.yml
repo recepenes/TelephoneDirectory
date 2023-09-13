@@ -1,0 +1,24 @@
+﻿services:  
+    postgres-dev:
+        image: postgres:15-alpine
+        restart: always
+        environment:
+            POSTGRES_PASSWORD: pdPassword
+            POSTGRES_USER: pdUser
+            POSTGRES_DB: phonedirectoryDB
+        networks:
+            - dev
+        ports: 
+            - 127.0.0.1:5432:5432
+            
+    rabbitmq-dev:
+        image: rabbitmq:3-management-alpine
+        restart: always
+        networks:
+            - dev
+        ports: 
+            - 127.0.0.1:5672:5672
+            - 127.0.0.1:15672:15672
+
+networks:
+    dev:
