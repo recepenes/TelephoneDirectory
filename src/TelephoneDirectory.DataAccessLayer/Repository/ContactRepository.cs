@@ -45,5 +45,22 @@ namespace TelephoneDirectory.DataAccessLayer.Repository
 
             Add(contact);
         }
+
+        public async Task DeleteContactInformation(Guid id)
+        {
+            var willDeleted = context.ContactInformation.Where(x => x.ContactId == id);
+
+            if (willDeleted == null)
+            {
+                throw new ArgumentNullException("İletişim bilgisi bulunamadı!");
+            }
+
+            foreach (var item in willDeleted)
+            {
+                context.ContactInformation.Remove(item);
+            }
+
+            context.SaveChangesAsync();
+        }
     }
 }
