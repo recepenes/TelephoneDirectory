@@ -8,6 +8,7 @@ namespace TelephoneDirectory.DataAccessLayer.Repository
         Task Add(Contact contact);
         Task CreateContactInformation(Guid id, IList<GetContactInformation> contactInformation);
         Task Delete(Guid id);
+        Task DeleteContactInformation(Guid id);
         Task<List<Contact>> GetAll();
         Task<Contact> GetContactByGuid(Guid id);
     }

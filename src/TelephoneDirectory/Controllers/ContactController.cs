@@ -23,7 +23,7 @@ namespace TelephoneDirectory.Controllers
             return Ok(result);
         }
 
-        [Route("getContactDetails/{id:guid:min(1)}")]
+        [Route("getContactDetails/{id:guid}")]
         [HttpGet]
         public async Task<IActionResult> GetContactDetail([FromRoute] Guid id)
         {
@@ -39,7 +39,7 @@ namespace TelephoneDirectory.Controllers
             return Ok();
         }
 
-        [Route("deleteContact/{id:guid:min(1)}")]
+        [Route("deleteContact/{id:guid}")]
         [HttpDelete]
         public async Task<IActionResult> Delete([FromRoute] Guid id)
         {
@@ -47,11 +47,19 @@ namespace TelephoneDirectory.Controllers
             return Ok();
         }
 
-        [Route("createContactInformation/{id:guid:min(1)}")]
+        [Route("createContactInformation/{id:guid}")]
         [HttpPost]
         public async Task<IActionResult> CreateContactInformation([FromRoute] Guid id, [FromBody] List<CreateContactInformation> model)
         {
             await _contactService.CreateContactInformation(id, model);
+            return Ok();
+        }
+
+        [Route("deleteContactInformation/{id:guid}")]
+        [HttpDelete]
+        public async Task<IActionResult> DeleteContactInformation([FromRoute] Guid id)
+        {
+            await _contactService.DeleteContactInformation(id);
             return Ok();
         }
     }

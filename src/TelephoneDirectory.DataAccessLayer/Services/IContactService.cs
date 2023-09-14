@@ -9,5 +9,6 @@ namespace TelephoneDirectory.DataAccessLayer.Services
         public Task Delete(Guid id);
         Task CreateContactInformation(Guid id, List<CreateContactInformation> contactInformation);
         Task<GetContactDetail> GetContactDetail(Guid id);
+        Task DeleteContactInformation(Guid id);
     }
 }

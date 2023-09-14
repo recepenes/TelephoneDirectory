@@ -88,5 +88,15 @@ namespace TelephoneDirectory.DataAccessLayer.Services
             }
             await repo.CreateContactInformation(id, list);
         }
+
+        public async Task DeleteContactInformation(Guid id)
+        {
+            var contact = await repo.GetContactByGuid(id);
+            if (contact == null)
+            {
+                throw new ArgumentNullException(nameof(contact));
+            }
+            await repo.DeleteContactInformation(id);
+        }
     }
 }
