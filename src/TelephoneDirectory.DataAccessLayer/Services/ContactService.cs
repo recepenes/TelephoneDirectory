@@ -58,5 +58,35 @@ namespace TelephoneDirectory.DataAccessLayer.Services
 
             return getContacts;
         }
+
+        public async Task<GetContactDetail> GetContactDetail(Guid id)
+        {
+            var contact = await repo.GetContactByGuid(id);
+
+            GetContactDetail getContacts = new(contact.Name, contact.Surname, contact.ContactInformation
+                , contact.CreatedAt);
+
+            return getContacts;
+        }
+
+        public async Task CreateContactInformation(Guid id, List<CreateContactInformation> contactInformation)
+        {
+            var contact = await repo.GetContactByGuid(id);
+            if (contact == null)
+            {
+                throw new ArgumentNullException(nameof(contact));
+            }
+
+            var list = new List<GetContactInformation>();
+
+            foreach (var item in contactInformation)
+            {
+                var contacts = new GetContactInformation(item.ContactId, item.ContactInformationType,
+                     item.Content, DateTime.UtcNow);
+                list.Add(contacts);
+
+            }
+            await repo.CreateContactInformation(id, list);
+        }
     }
 }

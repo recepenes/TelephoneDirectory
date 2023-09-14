@@ -12,7 +12,6 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-
 ConfigurationManager configuration = builder.Configuration;
 builder.Services.AddDbContext<Context>(options => options.UseNpgsql(configuration.GetConnectionString("defaultConnection")));
 
