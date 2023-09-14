@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using TelephoneDirectory.DataAccessLayer.Entities;
+using TelephoneDirectory.DataAccessLayer.Repository;
+using TelephoneDirectory.DataAccessLayer.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,8 +14,11 @@ builder.Services.AddSwaggerGen();
 
 
 ConfigurationManager configuration = builder.Configuration;
-builder.Services.AddDbContext<Context>(
-                options => options.UseNpgsql(configuration.GetConnectionString("defaultConnection")));
+builder.Services.AddDbContext<Context>(options => options.UseNpgsql(configuration.GetConnectionString("defaultConnection")));
+
+//register our services
+builder.Services.AddScoped<IContactService, ContactService>();
+builder.Services.AddTransient<IContactRepository, ContactRepository>();
 
 var app = builder.Build();
 
