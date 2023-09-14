@@ -5,5 +5,5 @@
     public record GetContact(Guid Id, string Name, string? Surname, DateTime CreatedAt);
 
     public record GetContactDetail(string Name, string? Surname,
-        GetContactInformation[]? ContactInformation, DateTime CreatedAt);
+        IList<GetContactInformation>? ContactInformation, DateTime? CreatedAt);
 }

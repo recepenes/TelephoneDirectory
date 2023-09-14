@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TelephoneDirectory.DataAccessLayer.Entities;
+using TelephoneDirectory.DataAccessLayer.Records;
 
 namespace TelephoneDirectory.DataAccessLayer.Repository
 {
@@ -25,7 +26,7 @@ namespace TelephoneDirectory.DataAccessLayer.Repository
 
         public async Task<Contact> GetContactByGuid(Guid id)
         {
-            return await context.Contacts.Where(x => x.Id == id).SingleAsync();
+            return await context.Contacts.Where(x => x.Id == id).Include(x => x.ContactInformation).SingleAsync();
         }
 
         public async Task Delete(Guid id)
@@ -33,6 +34,16 @@ namespace TelephoneDirectory.DataAccessLayer.Repository
             var contact = await GetContactByGuid(id);
             contact.DeletedAt = DateTime.UtcNow;
             context.Contacts.Update(contact);
+        }
+
+        public async Task CreateContactInformation(Guid id, IList<GetContactInformation> contactInformation)
+        {
+            var contact = await GetContactByGuid(id);
+            context.Contacts.Remove(contact);
+            context.SaveChanges();
+            contact.ContactInformation = contactInformation;
+
+            Add(contact);
         }
     }
 }
