@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TelephoneDirectory.DataAccessLayer.Migrations
 {
-    public partial class MyFirstMigration : Migration
+    public partial class db2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -15,14 +15,29 @@ namespace TelephoneDirectory.DataAccessLayer.Migrations
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     Name = table.Column<string>(type: "text", nullable: false),
-                    Surname = table.Column<string>(type: "text", nullable: true),
-                    Company = table.Column<string>(type: "text", nullable: true),
+                    Surname = table.Column<string>(type: "text", nullable: false),
+                    Company = table.Column<string>(type: "text", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     DeletedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Contacts", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Reports",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    FilePath = table.Column<string>(type: "text", nullable: true),
+                    ReportStatus = table.Column<int>(type: "integer", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    DeletedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Reports", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -57,6 +72,9 @@ namespace TelephoneDirectory.DataAccessLayer.Migrations
         {
             migrationBuilder.DropTable(
                 name: "ContactInformation");
+
+            migrationBuilder.DropTable(
+                name: "Reports");
 
             migrationBuilder.DropTable(
                 name: "Contacts");

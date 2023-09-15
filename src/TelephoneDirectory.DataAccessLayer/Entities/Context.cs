@@ -18,6 +18,7 @@ namespace TelephoneDirectory.DataAccessLayer.Entities
 
         public DbSet<Contact>? Contacts { get; set; }
         public DbSet<ContactInformation>? ContactInformation { get; set; }
+        public DbSet<Report> Reports { get; set; }
 
     }
 }

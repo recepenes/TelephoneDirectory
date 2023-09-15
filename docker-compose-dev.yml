@@ -1,26 +1,15 @@
-version: '3.9'
-services:  
+﻿services:  
     postgres-dev:
         image: postgres:15-alpine
         restart: always
         environment:
-            POSTGRES_PASSWORD: PZLqwVFf8YkwqRhq?PZLqwVFf8Y_dev
-            POSTGRES_USER: phonedirectory_usr
-            POSTGRES_DB: phonedirectory_db
+            POSTGRES_PASSWORD: pdPassword
+            POSTGRES_USER: pdUser
+            POSTGRES_DB: phonedirectoryDB
         networks:
             - dev
         ports: 
             - 127.0.0.1:5432:5432
-
-    adminer-dev:
-        image: adminer
-        restart: always
-        depends_on: 
-            - postgres-dev
-        networks:
-            - dev
-        ports: 
-            - 127.0.0.1:8282:8080
             
     rabbitmq-dev:
         image: rabbitmq:3-management-alpine

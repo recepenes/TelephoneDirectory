@@ -29,6 +29,7 @@ namespace TelephoneDirectory.DataAccessLayer.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<string>("Company")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<DateTime?>("CreatedAt")
@@ -42,6 +43,7 @@ namespace TelephoneDirectory.DataAccessLayer.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("Surname")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
@@ -76,6 +78,29 @@ namespace TelephoneDirectory.DataAccessLayer.Migrations
                     b.HasIndex("ContactId");
 
                     b.ToTable("ContactInformation");
+                });
+
+            modelBuilder.Entity("TelephoneDirectory.DataAccessLayer.Entities.Report", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("FilePath")
+                        .HasColumnType("text");
+
+                    b.Property<int>("ReportStatus")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Reports");
                 });
 
             modelBuilder.Entity("TelephoneDirectory.DataAccessLayer.Entities.ContactInformation", b =>

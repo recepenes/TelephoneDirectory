@@ -18,6 +18,7 @@ builder.Services.AddDbContext<Context>(options => options.UseNpgsql(configuratio
 //register our services
 builder.Services.AddScoped<IContactService, ContactService>();
 builder.Services.AddTransient<IContactRepository, ContactRepository>();
+builder.Services.AddScoped<IContactInformationService, ContactInformationService>();
 
 var app = builder.Build();
 

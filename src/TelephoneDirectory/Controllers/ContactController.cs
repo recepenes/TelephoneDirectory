@@ -47,20 +47,11 @@ namespace TelephoneDirectory.Controllers
             return Ok();
         }
 
-        [Route("createContactInformation/{id:guid}")]
-        [HttpPost]
-        public async Task<IActionResult> CreateContactInformation([FromRoute] Guid id, [FromBody] List<CreateContactInformation> model)
+        [HttpGet("getReportData")]
+        public async Task<IActionResult> GetReportData()
         {
-            await _contactService.CreateContactInformation(id, model);
-            return Ok();
-        }
-
-        [Route("deleteContactInformation/{id:guid}")]
-        [HttpDelete]
-        public async Task<IActionResult> DeleteContactInformation([FromRoute] Guid id)
-        {
-            await _contactService.DeleteContactInformation(id);
-            return Ok();
+            var result = await _contactService.GetReportData();
+            return Ok(result);
         }
     }
 }

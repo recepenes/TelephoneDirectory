@@ -36,31 +36,34 @@ namespace TelephoneDirectory.DataAccessLayer.Repository
             context.Contacts.Update(contact);
         }
 
-        public async Task CreateContactInformation(Guid id, IList<GetContactInformation> contactInformation)
+        public async Task<GetContactDetail> GetContactDetail(Guid id)
         {
-            var contact = await GetContactByGuid(id);
-            context.Contacts.Remove(contact);
-            context.SaveChanges();
-            contact.ContactInformation = contactInformation;
+            var sad = context
+           .Contacts
+           .Include(x => x.ContactInformation)
+           .Where(x => x.Id == id)
+           .SingleOrDefault();
 
-            Add(contact);
+            return new GetContactDetail(sad.Name, sad.Surname, (IList<GetContactInformation>?)sad.ContactInformation, sad.CreatedAt);
         }
 
-        public async Task DeleteContactInformation(Guid id)
+        public Task<GetReportContent[]> GetReportData()
         {
-            var willDeleted = context.ContactInformation.Where(x => x.ContactId == id);
-
-            if (willDeleted == null)
-            {
-                throw new ArgumentNullException("İletişim bilgisi bulunamadı!");
-            }
-
-            foreach (var item in willDeleted)
-            {
-                context.ContactInformation.Remove(item);
-            }
-
-            context.SaveChangesAsync();
+            return context.ContactInformation
+                .Where(x => x.ContactInformationType == ContactInformationTypeEnum.Location)
+                .GroupBy(x => x.Content)
+                .Select(x => new GetReportContent
+                (
+                    x.Key,
+                    x.Count(),
+                    context
+                        .ContactInformation
+                        // Count of all phone numbers for each location
+                        .Count(y => y.ContactInformationType == ContactInformationTypeEnum.PhoneNumber &&
+                                    x.Select(c => c.ContactId).Contains(y.ContactId))
+                ))
+                .AsNoTracking()
+                .ToArrayAsync();
         }
     }
 }

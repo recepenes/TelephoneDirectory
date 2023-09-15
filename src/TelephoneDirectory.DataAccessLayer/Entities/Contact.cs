@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using TelephoneDirectory.DataAccessLayer.Records;
 
 namespace TelephoneDirectory.DataAccessLayer.Entities
 {
@@ -11,6 +10,6 @@ namespace TelephoneDirectory.DataAccessLayer.Entities
         public string? Surname { get; set; }
         [Required]
         public string? Company { get; set; }
-        public IList<GetContactInformation> ContactInformation { get; set; }
+        public IList<ContactInformation> ContactInformation { get; set; }
     }
 }
