@@ -7,8 +7,7 @@ namespace TelephoneDirectory.DataAccessLayer.Services
         public Task<List<GetContact>> GetAll();
         public Task Create(CreateContact model);
         public Task Delete(Guid id);
-        Task CreateContactInformation(Guid id, List<CreateContactInformation> contactInformation);
         Task<GetContactDetail> GetContactDetail(Guid id);
-        Task DeleteContactInformation(Guid id);
+        Task<GetReportContent[]> GetReportData();
     }
 }

@@ -61,42 +61,12 @@ namespace TelephoneDirectory.DataAccessLayer.Services
 
         public async Task<GetContactDetail> GetContactDetail(Guid id)
         {
-            var contact = await repo.GetContactByGuid(id);
-
-            GetContactDetail getContacts = new(contact.Name, contact.Surname, contact.ContactInformation
-                , contact.CreatedAt);
-
-            return getContacts;
+            return await repo.GetContactDetail(id);
         }
 
-        public async Task CreateContactInformation(Guid id, List<CreateContactInformation> contactInformation)
+        public async Task<GetReportContent[]> GetReportData()
         {
-            var contact = await repo.GetContactByGuid(id);
-            if (contact == null)
-            {
-                throw new ArgumentNullException(nameof(contact));
-            }
-
-            var list = new List<GetContactInformation>();
-
-            foreach (var item in contactInformation)
-            {
-                var contacts = new GetContactInformation(item.ContactId, item.ContactInformationType,
-                     item.Content, DateTime.UtcNow);
-                list.Add(contacts);
-
-            }
-            await repo.CreateContactInformation(id, list);
-        }
-
-        public async Task DeleteContactInformation(Guid id)
-        {
-            var contact = await repo.GetContactByGuid(id);
-            if (contact == null)
-            {
-                throw new ArgumentNullException(nameof(contact));
-            }
-            await repo.DeleteContactInformation(id);
+            return await repo.GetReportData();
         }
     }
 }
