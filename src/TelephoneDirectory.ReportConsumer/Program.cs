@@ -7,8 +7,8 @@ using TelephoneDirectory.DataAccessLayer.Records;
 #region Configuration
 
 #if DEBUG
-const string contactServiceBaseUrl = "http://localhost:5164";
-const string reportServiceBaseUrl = "http://localhost:5138";
+const string contactServiceBaseUrl = "http://localhost:7276";
+const string reportServiceBaseUrl = "http://localhost:7192";
 const string reportDirectory = "/reports";
 
 const string rabbitMqConnection = "host=localhost";
