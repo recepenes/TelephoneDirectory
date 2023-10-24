@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TelephoneDirectory.ReportAP
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TelephoneDirectory.ReportConsumer", "src\TelephoneDirectory.ReportConsumer\TelephoneDirectory.ReportConsumer.csproj", "{88B952AB-AD94-4621-ABF4-93FAA01A12DD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelephoneDirectory.Tests", "..\TelephoneDirectory.Tests\TelephoneDirectory.Tests.csproj", "{B07365BE-90A4-4A8C-BDF2-A6FE2EE5E9C0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{88B952AB-AD94-4621-ABF4-93FAA01A12DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{88B952AB-AD94-4621-ABF4-93FAA01A12DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{88B952AB-AD94-4621-ABF4-93FAA01A12DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B07365BE-90A4-4A8C-BDF2-A6FE2EE5E9C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B07365BE-90A4-4A8C-BDF2-A6FE2EE5E9C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B07365BE-90A4-4A8C-BDF2-A6FE2EE5E9C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B07365BE-90A4-4A8C-BDF2-A6FE2EE5E9C0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

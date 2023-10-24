@@ -38,13 +38,13 @@ namespace TelephoneDirectory.DataAccessLayer.Repository
 
         public async Task<GetContactDetail> GetContactDetail(Guid id)
         {
-            var sad = context
+            var contact = context
            .Contacts
            .Include(x => x.ContactInformation)
            .Where(x => x.Id == id)
            .SingleOrDefault();
 
-            return new GetContactDetail(sad.Name, sad.Surname, (IList<GetContactInformation>?)sad.ContactInformation, sad.CreatedAt);
+            return new GetContactDetail(contact.Name, contact.Surname, (IList<GetContactInformation>?)contact.ContactInformation, contact.CreatedAt);
         }
 
         public Task<GetReportContent[]> GetReportData()
