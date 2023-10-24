@@ -11,14 +11,19 @@ namespace TelephoneDirectory.DataAccessLayer.Entities
 
         }
 
+        public Context()
+        {
+
+        }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
         }
 
-        public DbSet<Contact>? Contacts { get; set; }
-        public DbSet<ContactInformation>? ContactInformation { get; set; }
-        public DbSet<Report> Reports { get; set; }
+        public virtual DbSet<Contact>? Contacts { get; set; }
+        public virtual DbSet<ContactInformation>? ContactInformation { get; set; }
+        public virtual DbSet<Report> Reports { get; set; }
 
     }
 }
